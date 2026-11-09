@@ -1,0 +1,21 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Build
+        run: gcc -Wall -O2 -o hello hello.c
+
+      - name: Run
+        run: ./hello
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: hello-binary
+          path: hello
